@@ -1,5 +1,6 @@
 package go_koans
 
+import "io"
 import "bytes"
 
 func aboutCommonInterfaces() {
@@ -8,6 +9,7 @@ func aboutCommonInterfaces() {
 		in.WriteString("hello world")
 
 		out := new(bytes.Buffer)
+		in.WriteTo(out)
 
 		/*
 		   Your code goes here.
@@ -26,6 +28,8 @@ func aboutCommonInterfaces() {
 		in.WriteString("hello world")
 
 		out := new(bytes.Buffer)
+
+		io.CopyN(out, in, 5)
 
 		assert(out.String() == "hello") // duplicate only a portion of the io.Reader
 	}
